@@ -3,5 +3,5 @@
 
 ## Usage
 ```
-$ python download.py [mail] [password] [video id] [[video id] ...]
+$ python download.py <mail> <password> <video_id> [video_id...]
 ```

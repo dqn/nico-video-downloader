@@ -58,7 +58,7 @@ def download(session, video_id):
     print('Complete downloading: {}'.format(video_id))
 
 def usage():
-    print('Usage: python download.py [mail] [password] [video id] [[video id] ...]')
+    print('Usage: python download.py <mail> <password> <video_id> [video_id...]')
 
 def main():
     if len(sys.argv) < 4:
