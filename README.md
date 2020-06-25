@@ -1,7 +1,19 @@
 # nico-video-downloader
-ニコニコ動画から動画をダウンロードする。
+
+Download nico-video from niconico.
+
+## Installation
+
+```bash
+$ pip3 install -r requirements.txt
+```
 
 ## Usage
+
+```bash
+$ python3 download.py <mail> <password> <video-id>
 ```
-$ python download.py <mail> <password> <video_id> [video_id...]
-```
+
+## License
+
+MIT
