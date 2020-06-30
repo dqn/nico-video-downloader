@@ -8,7 +8,7 @@ import requests
 
 VIDEOS_DIR = './videos'
 
-class NicoVideoDownloaderExeption(Exception):
+class NicoVideoDownloaderException(Exception):
     pass
 
 class NicoVideoDownloader:
@@ -20,7 +20,7 @@ class NicoVideoDownloader:
         res = self.session.post('https://account.nicovideo.jp/api/v1/login', params=params)
 
         if res.headers['x-niconico-authflag'] != '1':
-            raise NicoVideoDownloaderExeption('failed to login')
+            raise NicoVideoDownloaderException('failed to login')
 
     def download(self, video_id: str, dir: str = './') -> None:
         video_info = self.__get_video_info(video_id)
@@ -34,7 +34,7 @@ class NicoVideoDownloader:
         res = self.session.get(video_url, stream=True)
 
         if res.status_code != 200:
-            raise NicoVideoDownloaderExeption(res.text)
+            raise NicoVideoDownloaderException(res.text)
 
         filename = f'{video_info["title"]}.{video_info["movie_type"]}'
         filepath = os.path.join(dir, filename)
@@ -49,12 +49,12 @@ class NicoVideoDownloader:
         res = self.session.get(f'https://ext.nicovideo.jp/api/getthumbinfo/{video_id}')
 
         if res.status_code != 200:
-            raise NicoVideoDownloaderExeption(res.text)
+            raise NicoVideoDownloaderException(res.text)
 
         soup = BeautifulSoup(res.text, 'lxml')
 
         if soup.error:
-            raise NicoVideoDownloaderExeption(res.text)
+            raise NicoVideoDownloaderException(res.text)
 
         return {
             'title': soup.title.string,
